@@ -1,0 +1,93 @@
+<!DOCTYPE html> 
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://kit.fontawesome.com/0e22389e8c.js" crossorigin="anonymous"></script>
+    <title>Registration Form</title>
+    <script src="pct.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <img src="image/logo.png" alt="logo">
+    <div class="wrapper">
+          <div class="container">
+            <form>
+              <h2>Creat Account</h2>
+              <div class="flx">
+                <div class="form">
+                  <label for="nom">Nom</label>
+                  <input type="text" id="nom"/>
+                  <Small></Small>
+                </div>
+                <div class="form" >
+                  <label for="marque">Marque</label>
+                  <input type="text" id="marque" name="marque"/>
+                  <small></small>
+                </div>
+            </div>
+            <div class="flx1">
+                <div class="form" >
+                  <label for="prix">Prix</label>
+                  <input type="text" id="prix" name="prix"/>
+                  <small></small>
+                </div>
+                <div class="form" >
+                  <label for="date">Date</label>
+                  <input type="date" placeholder="JJ/MM/AAAA" id="date"/>
+                  <small></small>
+                </div>
+            </div>
+            <div class="flx2">
+                <div class="form">
+                    <label>Type</label></br>
+                    <select name="type" id="type" type="text">
+                        <option value="">Choisi...</option>
+                        <option value="hygiène et toilette" >hygiène et toilette</option>
+                        <option value="soins esthétiques" >soins esthétiques</option>
+                        <option value="produits solaires" >produits solaires</option>
+                        <option value="beauté des mains et des pieds" >beauté des mains et des pieds</option>
+                        <option value="produits de maquillage">produits de maquillage</option>
+                        <option value="entretien capillaires">entretien capillaires</option>
+                        <option value="parfums">parfums</option>
+                    </select>
+                    <small></small>
+                </div>
+                <div class="form">
+                    <label>Promotion</label></br>
+                    <div class="radio">
+              <input type="radio"  name="M" value="oui" id="o" ><label for="Oui">Oui</label>
+              <input type="radio"  name="M" value="non" id="n" ><label for="Non">Non</label>
+            </div>
+            <div class="mis1"></div>
+            <small></small>
+            </div>
+            </div>
+                  <input type="button" id="btn" onclick="boom()" value="Ajouter">
+        </form>
+          </div>
+    <div>
+  <table class="list" id="table">
+    <thead class="thead-dark">
+      <tr class="text-center">
+        <th>Nom</th>
+        <th>Marque</th>
+        <th>Prix</th>
+        <th>Date</th>
+        <th>Type</th>
+        <th>Promotion</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="productList">
+     <tr></tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
+  </body>
+ 
+</html>
