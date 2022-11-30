@@ -6,8 +6,7 @@ const date = document.getElementById("date");
 const type = document.getElementById("type");
 const Promo = document.getElementsByName("M");
 const mis1 = document.querySelector(".mis1");
-// const M = document.getElementsByName("M");
-const btn = document.getElementById("btn");
+const ajt = document.getElementById("btn");
 
 function valide() {
   const nomValue = nom.value.trim();
@@ -46,24 +45,8 @@ function valide() {
   } else {
     setSuccessFor(type);
   }
-  // var gen = !Promo[0].checked && !Promo[1].checked;
-
-  // if (Promo[0].checked) {
-  //   mis1.innerHTML = "";
-  //   mis1.style.color = "green";
-  //   promo = document.getElementById("o").value;
-  // } else if (Promo[1].checked) {
-  //   mis1.innerHTML = "";
-  //   mis1.style.color = "green";
-  //   promo = document.getElementById("n").value;
-  // } else {
-  //   mis1.innerHTML = "Choose one";
-  //   mis1.style.color = "red";
-  // }
   for (let i = 0; i < Promo.length; i++) {
-    console.log(Promo[i].value);
     if (Promo[i].checked) {
-      console.log("rak warekty 3liha");
       setSuccessFor(Promo[i]);
       break;
     }else{
@@ -71,17 +54,17 @@ function valide() {
     }
   }
 }
-function boom() {
-  valide();
-  if (formvalidate() == true) {
-    var formData = readFormData();
-    insertNewRecord(formData);
-    resetForm();
-    console.log("dkhel inq3lk");
-  } else {
-    console.log(";dkhltch");
-  }
-}
+// function boom() {
+//   valide();
+//   if (formvalidate() == true) {
+//     var formData = readFormData();
+//     insertNewRecord(formData);
+//     resetForm();
+//     console.log("dkhel inq3lk");
+//   } else {
+//     console.log(";dkhltch");
+//   }
+// }
 function setErrorFor(theinput,message) {
   theinput.closest(".form").querySelector("small").textContent = message;
   console.log(theinput.closest(".form"));
@@ -102,6 +85,32 @@ function formvalidate() {
     }
   }
   return check;
+}
+var selectedRow = null;
+ajt.onclick = function getitdone() {
+  if(ajt.value=== "Ajouter")
+  {  
+    valide();
+    if(formvalidate() == true){
+      var formData = readFormData();
+      insertNewRecord(formData);
+      resetForm();
+    }else {
+      
+    }
+  } else if(ajt.value === "Modifier")
+  {
+    valide();
+    if (formvalidate() == true) {
+      var formData = readFormData();
+      updateRecord(formData);
+      resetForm();
+      document.getElementById("btn").value = "Ajouter";
+    } else {
+      valide();
+    }
+  }
+
 }
 //add;
 
@@ -134,8 +143,8 @@ function insertNewRecord(data) {
   cell5.innerHTML = data.type;
   cell6 = newRow.insertCell(5);
   cell6.innerHTML = data.promo;
-  cell7 = newRow.insertCell(6);
-  cell7.innerHTML = `<a onClick="onEdit(this)">Edit</a>
+  cell6 = newRow.insertCell(6);
+  cell6.innerHTML = `<a onClick="onEdit(this)">Edit</a>
                        <a onClick="OnDelete(this)">Delete</a>`;
 }
 function resetForm() {
@@ -148,31 +157,24 @@ function resetForm() {
   Promo[1].checked = Promo[1].unchecked;
   const div = document.querySelectorAll(".form");
   for (let i = 0; i < div.length; i++) {
-    console.log("ghambghat tdkhol");
     if (div[i].classList.contains("success")) {
       div[i].classList.remove("success");
-      console.log("raha kaina");
     }
   }
 }
 function onEdit(td) {
+  document.getElementById("btn").value = "Modifier";
   selectedRow = td.parentElement.parentElement;
   document.getElementById("nom").value = selectedRow.cells[0].innerHTML;
   document.getElementById("marque").value = selectedRow.cells[1].innerHTML;
   document.getElementById("prix").value = selectedRow.cells[2].innerHTML;
   document.getElementById("date").value = selectedRow.cells[3].innerHTML;
   document.getElementById("type").value = selectedRow.cells[4].innerHTML;
-  if (Promo[0].checked) {
-    document.getElementById("o").value = selectedRow.cells[5].innerHTML;
-  } else {
-    document.getElementById("n").value = selectedRow.cells[5].innerHTML;
-  }
   if ((selectedRow.cells[5].innerHTML = "Oui")) {
     document.getElementById("o").checked = true;
   } else {
     document.getElementById("n").checked = true;
   }
-  document.getElementById("btn").value = "modifie";
 }
 function updateRecord(formData) {
   selectedRow.cells[0].innerHTML = formData.nom;
